@@ -1,0 +1,18 @@
+.card-list {
+  padding: 3rem 1rem;
+}
+.joke-card {
+  background-color: #212529;
+  border: 1px solid #444;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #f8f9fa;
+  transition: transform 0.3s ease;
+}
+.joke-card:hover {
+  transform: scale(1.03);
+}
+.joke-category {
+  font-size: 0.85rem;
+  color: #ffc107;
+}

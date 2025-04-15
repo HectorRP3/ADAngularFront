@@ -1,0 +1,17 @@
+<div class="card p-3 joke-card">
+  <div class="card-body">
+    <h5 class="card-title">Chiste {{ number() }}</h5>
+    <p class="card-text"><strong>Texto1:</strong> {{ joke().text1 }}</p>
+    <p class="card-text"><strong>Texto2:</strong> {{ joke().text2 }}</p>
+    <p class="joke-category">
+      <strong>Category:</strong> {{ joke().category }}
+    </p>
+    <p class="joke-category"><strong>Type:</strong> {{ joke().type }}</p>
+    <p class="joke-category">
+      <strong>Language:</strong> {{ joke().language }}
+    </p>
+    <span class="joke-category"
+      ><strong>Flags:</strong> {{ joke().flags }}</span
+    >
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="container-fluid">
+    Jokes
+    <a class="navbar-brand" [routerLink]="['/home']">{{ title }}</a>
+    <ul class="navbar-nav me-auto mb-lg-0">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          [routerLink]="['/jokes']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Jokes</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/flags']"
+          [routerLinkActive]="['active']"
+          >Flags</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,23 @@
+<form [formGroup]="jokesFlagsForm" (submit)="addFlag()">
+  <div class="mb-3">
+    @for(flag of flagsResource.value();track $index;let i = $index){
+    <div class="form-check form-check-inline" formArrayName="flags">
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="flag{{ i }}"
+        [formControlName]="i"
+      />
+      <label class="custom-control-label ms-2" for="flag{{ i }}">{{
+        flag.flag
+      }}</label>
+    </div>
+    }
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4 col-5"
+  >
+    Add Flags
+  </button>
+</form>

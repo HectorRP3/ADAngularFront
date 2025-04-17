@@ -1,3 +1,4 @@
+import { FlagResource } from '../../flags/interfaces/flags';
 import { Categories } from '../../shared/interfaces/categories';
 import { Language } from '../../shared/interfaces/language';
 import { Types } from '../../shared/interfaces/types';
@@ -8,7 +9,7 @@ export interface JokeInsert {
   categories?: Categories;
   types?: Types;
   language?: Language;
-  flagses?: string[];
+  flagses?: FlagResource[];
 }
 
 export interface Joke extends JokeInsert {

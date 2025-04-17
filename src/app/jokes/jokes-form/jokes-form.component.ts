@@ -1,16 +1,23 @@
-import { Component, DestroyRef, inject, input } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
+import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormsModule,
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { JokesService } from '../services/jokes.service';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { catchError, EMPTY, tap } from 'rxjs';
-import { JokeInsert } from '../interfaces/jokes';
+import { JokeInsert, JokeResource } from '../interfaces/jokes';
+import { JokesService } from '../services/jokes.service';
 
 @Component({
   selector: 'jokes-form',
@@ -24,24 +31,38 @@ export class JokesFormComponent {
   #router = inject(Router);
   #fb = inject(NonNullableFormBuilder);
   #title = inject(Title);
-  idJokes = input<number>();
+  id = input<number>();
+  jokesPlues = signal<JokeResource>({
+    id: 0,
+    text1: '',
+    text2: '',
+    language: '',
+    category: '',
+    type: '',
+    flags: [],
+  });
 
   jokeResource = rxResource({
-    request: () => this.idJokes(),
-    loader: ({ request: id }) => {
-      if (id) {
-        this.#jokesService.getJokeById(id).pipe(
-          tap((j) => {
-            this.#title.setTitle(j.id + '| SPRING JOKES');
-          }),
-          catchError(() => {
-            this.#router.navigate(['/jokes']);
-            return EMPTY;
-          })
-        );
-      }
-      return EMPTY;
-    },
+    request: () => this.id(),
+    loader: ({ request: id }) =>
+      this.#jokesService.getJokeById(id).pipe(
+        tap((j) => {
+          this.#title.setTitle(j.id + '| SPRING JOKES');
+          this.jokesPlues().id = j.id;
+          this.jokesPlues().text1 = j.text1;
+          this.jokesPlues().text2 = j.text2;
+          this.jokesPlues().language = j.language;
+          this.jokesPlues().category = j.category;
+          this.jokesPlues().type = j.type;
+          this.jokesPlues().flags = j.flags;
+          console.log(this.jokesPlues());
+        }),
+
+        catchError(() => {
+          this.#router.navigate(['/jokes']);
+          return EMPTY;
+        })
+      ),
   });
 
   languages = [
@@ -62,8 +83,8 @@ export class JokesFormComponent {
     { id: 7, name: 'Christmas' },
   ];
   types = [
-    { id: 1, name: 'Single' },
-    { id: 2, name: 'Twopart' },
+    { id: 1, name: 'single' },
+    { id: 2, name: 'tpñwopart' },
   ];
 
   jokesForm = this.#fb.group({
@@ -72,8 +93,30 @@ export class JokesFormComponent {
     language: [0, [Validators.required]],
     categoriesid: [0, [Validators.required]],
     typesid: [0, [Validators.required]],
-    typesType: ['', [Validators.required]],
   });
+
+  constructor() {
+    effect(() => {
+      if (this.jokeResource.value()) {
+        const lang = this.languages.find(
+          (l) => l.name === this.jokesPlues().language
+        )?.id;
+        const categories = this.categories.find(
+          (c) => c.name === this.jokesPlues().category
+        )?.id;
+        const types = this.types.find(
+          (t) => t.name === this.jokesPlues().type
+        )?.id;
+        //
+        this.jokesForm.controls.text1.setValue(this.jokesPlues().text1 ?? '');
+        this.jokesForm.controls.text2.setValue(this.jokesPlues().text2 ?? '');
+        this.jokesForm.controls.language.setValue(lang ?? 0);
+        this.jokesForm.controls.categoriesid.setValue(categories ?? 0);
+        this.jokesForm.controls.typesid.setValue(types ?? 0);
+        console.log(this.jokesForm.value + '');
+      }
+    });
+  }
 
   addJokes() {
     const categoriName = this.categories.find(
@@ -102,7 +145,7 @@ export class JokesFormComponent {
 
     if (this.jokeResource.value()) {
       this.#jokesService
-        .updateJoke(newJoke, this.idJokes() ?? 0)
+        .updateJoke(newJoke, this.id() ?? 0)
         .pipe(takeUntilDestroyed(this.#destroyRef))
         .subscribe({
           next: () => {

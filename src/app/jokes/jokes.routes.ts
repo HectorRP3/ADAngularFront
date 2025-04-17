@@ -25,6 +25,13 @@ export const jokesRoutes: Routes = [
       ),
   },
   {
+    path: 'flags/:id',
+    loadComponent: () =>
+      import('./jokes-flags/jokes-flags.component').then(
+        (c) => c.JokesFlagsComponent
+      ),
+  },
+  {
     path: 'edit/:id',
     loadComponent: () =>
       import('./jokes-form/jokes-form.component').then(

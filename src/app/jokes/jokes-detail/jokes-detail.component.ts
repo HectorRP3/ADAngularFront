@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Joke } from '../interfaces/jokes';
+import { JokeResource } from '../interfaces/jokes';
 import { JokesCardComponent } from '../jokes-card/jokes-card.component';
 
 @Component({
@@ -9,5 +9,5 @@ import { JokesCardComponent } from '../jokes-card/jokes-card.component';
   styleUrl: './jokes-detail.component.css',
 })
 export class JokesDetailComponent {
-  jokes = input.required<Joke>();
+  jokes = input.required<JokeResource>();
 }

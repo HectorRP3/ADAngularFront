@@ -19,8 +19,8 @@ export class JokesService {
     );
   }
 
-  getJokeById(id: number): Observable<Joke> {
-    return this.#http.get<Joke>(`${this.#jokesUrl}/${id}`).pipe(
+  getJokeById(id: number): Observable<JokeResource> {
+    return this.#http.get<JokeResource>(`${this.#jokesUrl}/${id}`).pipe(
       map((r) => {
         console.log(r);
         return r;
@@ -45,6 +45,16 @@ export class JokesService {
       })
     );
   }
+
+  updateJoke2(joke: Joke, id: number): Observable<Joke> {
+    return this.#http.put<Joke>(`${this.#jokesUrl}/${id}`, joke).pipe(
+      map((r) => {
+        console.log(r);
+        return r;
+      })
+    );
+  }
+
   deleteJoke(id: number): Observable<void> {
     return this.#http.delete<void>(`${this.#jokesUrl}/${id}`).pipe(
       map((r) => {

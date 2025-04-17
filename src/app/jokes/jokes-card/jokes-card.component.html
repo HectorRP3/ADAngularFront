@@ -1,17 +1,53 @@
 <div class="card p-3 joke-card">
   <div class="card-body">
     <h5 class="card-title">Chiste {{ number() }}</h5>
-    <p class="card-text"><strong>Texto1:</strong> {{ joke().text1 }}</p>
-    <p class="card-text"><strong>Texto2:</strong> {{ joke().text2 }}</p>
-    <p class="joke-category">
-      <strong>Category:</strong> {{ joke().category }}
+    <p class="card-text">
+      <strong>Texto1:</strong> @if(joke().text1 !== "null"){
+      {{ joke().text1 }} }@else{ No tiene texto primario }
     </p>
-    <p class="joke-category"><strong>Type:</strong> {{ joke().type }}</p>
+    <p class="card-text">
+      <strong>Texto2:</strong>@if(joke().text2 !== "null"){
+      {{ joke().text2 }} }@else{ No tiene texto secundario }
+    </p>
     <p class="joke-category">
-      <strong>Language:</strong> {{ joke().language }}
+      <strong>Category:</strong> @if(joke().category !== null){
+      {{ joke().category }} }@else{ No tiene categoria }
+    </p>
+    <p class="joke-category">
+      <strong>Type:</strong> @if(joke().type){ {{ joke().type }} }@else{ No
+      tiene tipo }
+    </p>
+    <p class="joke-category">
+      <strong>Language:</strong>@if(joke().language !== null){
+      {{ joke().language }} }@else{ No tiene lenguaje }
     </p>
     <span class="joke-category"
-      ><strong>Flags:</strong> {{ joke().flags }}</span
+      ><strong>Flags:</strong> @if(joke().flags.length){
+      {{ joke().flags }} }@else{ No hay flags en este joke}</span
     >
+  </div>
+  <div class="row gap-2 flex justify-content-center">
+    <button
+      type="button"
+      class="btn btn-info d-flex align-items-center gap-2 mt-4 col-3"
+    >
+      <fa-icon [icon]="icons.faEdit"></fa-icon>
+      Editar Joke
+    </button>
+    <button
+      type="button"
+      class="btn btn-warning d-flex align-items-center gap-2 mt-4 col-3"
+    >
+      <fa-icon [icon]="icons.faTrash"></fa-icon>
+      Add Flags
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger d-flex align-items-center gap-2 mt-4 col-3"
+      (click)="deleteJokes(joke().id)"
+    >
+      <fa-icon [icon]="icons.faTrash"></fa-icon>
+      Delete Joke
+    </button>
   </div>
 </div>

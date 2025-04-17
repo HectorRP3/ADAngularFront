@@ -1,14 +1,66 @@
-<div
-  id="placesContainer"
-  class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"
->
-  <!-- @for (restaurant of restaurants(); track $index) {
-  <restaurant-card
-    @animateProduct
-    [restaurant]="restaurant"
-    (deleted)="deleteRestaurant(restaurant)"
-    class="col"
+<form [formGroup]="jokesForm" class="mt-4" (submit)="addJokes()">
+  <div class="mb-3">
+    <label for="text1" class="form-label">Texto1</label>
+    <input
+      type="text"
+      class="form-control"
+      id="text1"
+      formControlName="text1"
+      placeholder="Texto1"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="text2" class="form-label">Texto2</label>
+    <input
+      type="text"
+      class="form-control"
+      id="text2"
+      formControlName="text2"
+      placeholder="Texto2"
+    />
+  </div>
+  <div class="mb-3">
+    @for(categories of categories; track $index){
+    <label for="category{{ $index }}" class="form-label">{{
+      categories.name
+    }}</label>
+    <input
+      type="radio"
+      class="form-check-input"
+      id="category{{ $index }}"
+      formControlName="categoriesid"
+      [value]="categories.id"
+    />
+    }
+  </div>
+  <div class="mb-3">
+    @for(types of types; track $index){
+    <label for="">{{ types.name }}</label>
+    <input
+      type="radio"
+      class="form-check-input"
+      id="type{{ $index }}"
+      formControlName="typesid"
+      [value]="types.id"
+    />
+    }
+  </div>
+  <div class="mb-3">
+    @for(languages of languages; track $index){
+    <label for="">{{ languages.name }}</label>
+    <input
+      type="radio"
+      class="form-check-input"
+      id="language{{ $index }}"
+      formControlName="language"
+      [value]="languages.id"
+    />
+    }
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4"
   >
-  </restaurant-card>
-  } -->
-</div>
+    Crear Chiste
+  </button>
+</form>

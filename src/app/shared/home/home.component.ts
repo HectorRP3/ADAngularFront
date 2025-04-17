@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { JokesCardComponent } from '../../jokes/jokes-card/jokes-card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Joke } from '../interfaces/jokes';
+import { Joke, JokeInsert, JokeResource } from '../interfaces/jokes';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,8 @@ export class JokesService {
   #jokesUrl = 'jokes';
   #http = inject(HttpClient);
 
-  getJokes(): Observable<Joke[]> {
-    return this.#http.get<Joke[]>(`${this.#jokesUrl}`).pipe(
+  getJokes(): Observable<JokeResource[]> {
+    return this.#http.get<JokeResource[]>(`${this.#jokesUrl}`).pipe(
       map((r) => {
         console.log(r);
         return r;
@@ -21,6 +21,32 @@ export class JokesService {
 
   getJokeById(id: number): Observable<Joke> {
     return this.#http.get<Joke>(`${this.#jokesUrl}/${id}`).pipe(
+      map((r) => {
+        console.log(r);
+        return r;
+      })
+    );
+  }
+
+  addJoke(joke: JokeInsert): Observable<Joke> {
+    return this.#http.post<Joke>(`${this.#jokesUrl}`, joke).pipe(
+      map((r) => {
+        console.log(r);
+        return r;
+      })
+    );
+  }
+
+  updateJoke(joke: JokeInsert, id: number): Observable<Joke> {
+    return this.#http.put<Joke>(`${this.#jokesUrl}/${id}`, joke).pipe(
+      map((r) => {
+        console.log(r);
+        return r;
+      })
+    );
+  }
+  deleteJoke(id: number): Observable<void> {
+    return this.#http.delete<void>(`${this.#jokesUrl}/${id}`).pipe(
       map((r) => {
         console.log(r);
         return r;

@@ -17,6 +17,11 @@
     </div>
   </div>
   } @else { @for(flag of flags.value(); track $index){ @let number = $index + 1;
-  <flags-card [number]="number" [flag]="flag" class="col"></flags-card>
+  <flags-card
+    (delete)="deleteFlag(flag)"
+    [number]="number"
+    [flag]="flag"
+    class="col"
+  ></flags-card>
   } }
 </div>

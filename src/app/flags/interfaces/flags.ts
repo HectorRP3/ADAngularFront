@@ -1,6 +1,8 @@
+import { JokeResourceInsert } from '../../jokes/interfaces/jokes';
+
 export interface flagInsert {
   flag: string;
-  jokesId?: number[];
+  jokeses?: number[];
 }
 export interface Flag extends flagInsert {
   id: number;
@@ -9,4 +11,10 @@ export interface Flag extends flagInsert {
 export interface FlagResource {
   id: number;
   flag: string;
+}
+
+export interface flagInsert2 {
+  id: number;
+  flag: string;
+  jokeses?: JokeResourceInsert[];
 }

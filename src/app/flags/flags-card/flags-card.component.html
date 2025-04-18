@@ -3,12 +3,13 @@
     <h5 class="card-title">Flag {{ number() }}</h5>
     <p class="card-text"><strong>Flag:</strong> {{ flag().flag }}</p>
     <p class="card-text .joke-category">
-      <strong>Linked Jokes :</strong>@if(flag().jokesId?.length){
-      {{ flag().jokesId }} }@else{ No hay jokes en este flag}
+      <strong>Linked Jokes :</strong>@if(flag().jokeses?.length){
+      {{ flag().jokeses }} }@else{ No hay jokes en este flag}
     </p>
   </div>
   <div class="row gap-2 flex justify-content-center">
     <button
+      (click)="goEdit()"
       type="button"
       class="btn btn-info d-flex align-items-center gap-2 mt-4 col-5"
     >
@@ -16,17 +17,20 @@
       Editar Flag
     </button>
     <button
-      type="button"
-      class="btn btn-danger d-flex align-items-center gap-2 mt-4 col-5"
-    >
-      <fa-icon [icon]="icons.faTrash"></fa-icon>
-      Delete Flag
-    </button>
-    <button
+      (click)="goAddJokes()"
       type="button"
       class="btn btn-warning d-flex align-items-center gap-2 mt-4 col-5"
     >
       <fa-icon [icon]="icons.faPlus"></fa-icon>
+      Add jokes
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger d-flex align-items-center gap-2 mt-4 col-5"
+      (click)="deleteFlags(flag().id)"
+    >
+      <fa-icon [icon]="icons.faTrash"></fa-icon>
+
       Delete Flag
     </button>
   </div>

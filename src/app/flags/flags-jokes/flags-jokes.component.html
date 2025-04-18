@@ -1,0 +1,24 @@
+<h2>Seleciona los jokes</h2>
+<form [formGroup]="flagJokesForm" (submit)="addJokes()">
+  <div class="mb-3">
+    @for(joke of jokesResources.value();track $index; let i = $index){
+    <div class="form-check form-check-inline" formArrayName="jokes">
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="joke{{ i }}"
+        [formControlName]="i"
+      />
+      <label class="custom-control-label ms-2" for="joke{{ i }}">{{
+        joke.id
+      }}</label>
+    </div>
+    }
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4 col-5"
+  >
+    Add Jokes
+  </button>
+</form>

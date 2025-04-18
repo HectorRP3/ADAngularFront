@@ -25,3 +25,7 @@ export interface JokeResource {
   language: string;
   flags: string[];
 }
+
+export interface JokeResourceInsert {
+  id: number;
+}

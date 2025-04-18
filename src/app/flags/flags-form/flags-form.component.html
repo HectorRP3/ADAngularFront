@@ -1,1 +1,18 @@
-<p>flags-form works!</p>
+<form [formGroup]="flagsForm" (submit)="addFlag()">
+  <div class="mb-3">
+    <label for="flag" class="form-label">Flag</label>
+    <input
+      type="text"
+      class="form-control"
+      id="flag"
+      formControlName="flag"
+      placeholder="flag"
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4"
+  >
+    @if(id()){ Editar Joke }@else{ Agregar Joke }
+  </button>
+</form>

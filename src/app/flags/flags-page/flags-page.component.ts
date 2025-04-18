@@ -5,6 +5,7 @@ import { FlagsCardComponent } from '../flags-card/flags-card.component';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { Flag } from '../interfaces/flags';
 
 @Component({
   selector: 'flags-page',
@@ -22,5 +23,9 @@ export class FlagsPageComponent {
 
   goCreateFlag() {
     return this.#router.navigate(['/flags', 'add']);
+  }
+
+  deleteFlag(flag: Flag) {
+    this.flags.update((f) => f?.filter((fl) => fl !== flag));
   }
 }

@@ -84,7 +84,7 @@ export class JokesFormComponent {
   ];
   types = [
     { id: 1, name: 'single' },
-    { id: 2, name: 'tpñwopart' },
+    { id: 2, name: 'twopart' },
   ];
 
   jokesForm = this.#fb.group({

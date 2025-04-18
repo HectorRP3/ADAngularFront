@@ -1,3 +1,4 @@
+<h2>Seleciona los flags</h2>
 <form [formGroup]="jokesFlagsForm" (submit)="addFlag()">
   <div class="mb-3">
     @for(flag of flagsResource.value();track $index;let i = $index){

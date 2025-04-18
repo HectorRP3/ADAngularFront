@@ -20,6 +20,7 @@
     />
   </div>
   <div class="mb-3">
+    <h2>Selecciona categoria</h2>
     @for(categories of categories; track $index){
     <label for="category{{ $index }}" class="form-label">{{
       categories.name
@@ -34,6 +35,7 @@
     }
   </div>
   <div class="mb-3">
+    <h2>Selecciona tipo</h2>
     @for(types of types; track $index){
     <label for="">{{ types.name }}</label>
     <input
@@ -46,6 +48,7 @@
     }
   </div>
   <div class="mb-3">
+    <h2>Selecciona idioma</h2>
     @for(languages of languages; track $index){
     <label for="">{{ languages.name }}</label>
     <input
@@ -61,6 +64,6 @@
     type="submit"
     class="btn btn-primary d-flex align-items-center gap-2 mt-4"
   >
-    @if(id()!== null){ Editar Joke }@else{ Agregar Joke }
+    @if(id()){ Editar Joke }@else{ Agregar Joke }
   </button>
 </form>

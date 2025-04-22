@@ -1,6 +1,6 @@
 <div class="card p-3 joke-card">
   <div class="card-body">
-    <h5 class="card-title">Chiste {{ number() }}</h5>
+    <h5 class="card-title">Chiste {{ joke().id }}</h5>
     <p class="card-text">
       <strong>Texto1:</strong> @if(joke().text1 !== "null"){
       {{ joke().text1 }} }@else{ No tiene texto primario }
@@ -25,6 +25,19 @@
       ><strong>Flags:</strong> @if(joke().flags.length){
       {{ joke().flags }} }@else{ No hay flags en este joke}</span
     >
+    <div class="joke-category">
+      <strong>Primera vez:</strong>
+      @if(joke().primeraVez){
+      <br /><span
+        ><strong> Programa:</strong> {{ joke().primeraVez?.programa }}</span
+      ><br />
+      <span><strong> Fecha:</strong> {{ joke().primeraVez?.fechaEmision }}</span
+      ><br />
+      <span
+        ><strong> Telefonos:</strong>{{ joke().primeraVez?.telefonoses }}</span
+      >
+      }@else{ No es la primera vez que se ve este chiste }
+    </div>
   </div>
   <div class="row gap-2 flex justify-content-center">
     <button

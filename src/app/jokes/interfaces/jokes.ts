@@ -1,4 +1,5 @@
 import { FlagResource } from '../../flags/interfaces/flags';
+import { PrimeraVezJokes } from '../../primeraVez/interfaces/PrimeraVez';
 import { Categories } from '../../shared/interfaces/categories';
 import { Language } from '../../shared/interfaces/language';
 import { Types } from '../../shared/interfaces/types';
@@ -24,6 +25,7 @@ export interface JokeResource {
   type: string;
   language: string;
   flags: string[];
+  primeraVez?: PrimeraVezJokes;
 }
 
 export interface JokeResourceInsert {

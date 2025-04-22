@@ -1,11 +1,50 @@
-<button
-  type="button"
-  class="btn btn-dark d-flex align-items-center gap-2 mt-4"
-  (click)="goCreateJokes()"
->
-  <fa-icon [icon]="icon"></fa-icon>
-  Crear Jokes
-</button>
+<nav class="navbar navbar-light bg-light justify-content-between mt-3">
+  <form class="container-fluid mb-0 col">
+    <input
+      class="form-control"
+      type="text"
+      name="search"
+      placeholder="Filtrar"
+      aria-label="Search"
+      [(ngModel)]="search"
+    />
+  </form>
+</nav>
+<div class="d-flex justify-content-between w-50">
+  <button
+    type="button"
+    class="btn btn-dark d-flex align-items-center gap-2 mt-4"
+    (click)="goCreateJokes()"
+  >
+    <fa-icon [icon]="icon.faPlus"></fa-icon>
+    Crear Jokes
+  </button>
+  <button
+    type="button"
+    class="btn btn-dark d-flex align-items-center gap-2 mt-4"
+    (click)="goFilterWithPrimeraVez()"
+  >
+    <fa-icon [icon]="icon.faFilter"></fa-icon>
+    With primeraVez
+  </button>
+  <button
+    type="button"
+    class="btn btn-dark d-flex align-items-center gap-2 mt-4"
+    (click)="goFilterWithoutPrimeraVez()"
+  >
+    <fa-icon [icon]="icon.faFilter"></fa-icon>
+    Without primeraVez
+  </button>
+  <button
+    type="button"
+    class="btn btn-dark d-flex align-items-center gap-2 mt-4"
+    (click)="goResetFilter()"
+  >
+    <fa-icon [icon]="icon.faFilter"></fa-icon>
+    Reset Filter
+  </button>
+</div>
+
 <div
   id="placesContainer"
   class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"

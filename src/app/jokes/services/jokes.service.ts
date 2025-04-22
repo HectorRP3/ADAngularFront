@@ -10,8 +10,37 @@ export class JokesService {
   #jokesUrl = 'jokes';
   #http = inject(HttpClient);
 
-  getJokes(): Observable<JokeResource[]> {
+  getJokes(texto = ''): Observable<JokeResource[]> {
+    if (texto !== '') {
+      return this.#http
+        .get<JokeResource[]>(`${this.#jokesUrl}?texto=${texto}`)
+        .pipe(
+          map((r) => {
+            console.log(r);
+            return r;
+          })
+        );
+    }
     return this.#http.get<JokeResource[]>(`${this.#jokesUrl}`).pipe(
+      map((r) => {
+        console.log(r);
+        return r;
+      })
+    );
+  }
+
+  // jokesWithprimeraVez
+  getJokesWithPrimeraVez(): Observable<JokeResource[]> {
+    return this.#http.get<JokeResource[]>(`jokesWithprimeraVez`).pipe(
+      map((r) => {
+        console.log(r);
+        return r;
+      })
+    );
+  }
+  //jokesWithoutPrimeraVez
+  getJokesWithoutPrimeraVez(): Observable<JokeResource[]> {
+    return this.#http.get<JokeResource[]>(`jokesWithoutprimeraVez`).pipe(
       map((r) => {
         console.log(r);
         return r;

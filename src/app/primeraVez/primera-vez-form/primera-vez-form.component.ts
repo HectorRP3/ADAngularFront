@@ -20,6 +20,8 @@ import { PrimeraVezJokes } from '../interfaces/PrimeraVez';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { JokesService } from '../../jokes/services/jokes.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalComponent } from '../../shared/modals/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'primera-vez-form',
@@ -101,15 +103,33 @@ export class PrimeraVezFormComponent {
       this.#primeraVezService
         .updatePrimeraVez(newPrimeraVez, this.id()!)
         .pipe(takeUntilDestroyed(this.#destroyRef))
-        .subscribe(() => {
-          this.#router.navigate(['/primeravez']);
+        .subscribe({
+          next: (res) => {
+            this.#router.navigate(['/primeravez', res.id]);
+          },
+          error: (err) => {
+            this.alertModal(
+              'Error al guardar los datos. Intenta nuevamente.' +
+                err.error.message,
+              'Error'
+            );
+          },
         });
     } else {
       this.#primeraVezService
         .addPrimeraVez(newPrimeraVez)
         .pipe(takeUntilDestroyed(this.#destroyRef))
-        .subscribe(() => {
-          this.#router.navigate(['/primeravez']);
+        .subscribe({
+          next: () => {
+            this.#router.navigate(['/primeravez']);
+          },
+          error: (err) => {
+            this.alertModal(
+              'Error al guardar los datos. Intenta nuevamente.' +
+                err.error.message,
+              'Error'
+            );
+          },
         });
     }
   }
@@ -138,5 +158,12 @@ export class PrimeraVezFormComponent {
   private loadPhones(numbers: string[] = []): void {
     this.phones.clear(); // vacía los controles presentes
     numbers.forEach((num) => this.phones.push(this.newPhoneControlValue(num)));
+  }
+  #modalService = inject(NgbModal);
+  alertModal(text: string, title: string) {
+    const modalRef = this.#modalService.open(AlertModalComponent);
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.body = text;
+    return modalRef.result.catch(() => false);
   }
 }

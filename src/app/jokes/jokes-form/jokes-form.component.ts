@@ -18,6 +18,8 @@ import { Router } from '@angular/router';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { JokeInsert, JokeResource } from '../interfaces/jokes';
 import { JokesService } from '../services/jokes.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalComponent } from '../../shared/modals/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'jokes-form',
@@ -153,6 +155,11 @@ export class JokesFormComponent {
           },
           error: (err) => {
             console.error(err);
+            this.alertModal(
+              'Error al guardar los datos. Intenta nuevamente.' +
+                err.error.errors,
+              'Error'
+            );
           },
         });
     } else {
@@ -165,8 +172,21 @@ export class JokesFormComponent {
           },
           error: (err) => {
             console.error(err);
+            this.alertModal(
+              'Error al guardar los datos. Intenta nuevamente.' +
+                err.error.errors,
+              'Error'
+            );
           },
         });
     }
+  }
+
+  #modalService = inject(NgbModal);
+  alertModal(text: string, title: string) {
+    const modalRef = this.#modalService.open(AlertModalComponent);
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.body = text;
+    return modalRef.result.catch(() => false);
   }
 }

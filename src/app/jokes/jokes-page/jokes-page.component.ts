@@ -8,6 +8,8 @@ import { JokesCardComponent } from '../jokes-card/jokes-card.component';
 import { JokesService } from '../services/jokes.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalComponent } from '../../shared/modals/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'jokes-page',
@@ -50,8 +52,16 @@ export class JokesPageComponent {
 
   goFilterWithPrimeraVez() {
     console.log('goFilterWithPrimeraVez');
-    this.#jokesService.getJokesWithPrimeraVez().subscribe((jokes) => {
-      this.jokes.update(() => jokes);
+    this.#jokesService.getJokesWithPrimeraVez().subscribe({
+      next: (jokes) => {
+        this.jokes.update(() => jokes);
+      },
+      error: (err) => {
+        console.error('Error al obtener los chistes con primera vez', err);
+        this.alertModal('No hay chistes con primera vez', 'Error').then(() => {
+          this.goResetFilter();
+        });
+      },
     });
   }
   goFilterWithoutPrimeraVez() {
@@ -64,5 +74,13 @@ export class JokesPageComponent {
     this.#jokesService.getJokes().subscribe((jokes) => {
       this.jokes.update(() => jokes);
     });
+  }
+
+  #modalService = inject(NgbModal);
+  alertModal(text: string, title: string) {
+    const modalRef = this.#modalService.open(AlertModalComponent);
+    modalRef.componentInstance.title = title;
+    modalRef.componentInstance.body = text;
+    return modalRef.result.catch(() => false);
   }
 }

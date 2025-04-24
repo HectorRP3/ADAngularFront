@@ -12,6 +12,12 @@ export const routes: Routes = [
       import('./flags/flags.routes').then((m) => m.flagsRoutes),
   },
   {
+    path: 'primeravez',
+    title: 'PrimeraVez | SPRING JOKES',
+    loadChildren: () =>
+      import('./primeraVez/primeraVez.routes').then((m) => m.primeraVezRoutes),
+  },
+  {
     path: 'home',
     title: 'HOME | SPRING JOKES',
     loadComponent: () =>

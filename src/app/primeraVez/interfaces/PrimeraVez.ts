@@ -1,5 +1,5 @@
 export interface PrimeraVezJokes {
-  id: number;
+  id?: number;
   programa: string;
   fechaEmision: string;
   telefonoses: string[];

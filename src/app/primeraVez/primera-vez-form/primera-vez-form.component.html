@@ -1,1 +1,66 @@
-<p>primera-vez-form works!</p>
+<form [formGroup]="primeraVezForm" class="mt-4" (submit)="addPrimeraVez()">
+  <div class="mb-3">
+    <label for="programa" class="form-label">programa</label>
+    <input
+      type="text"
+      class="form-control"
+      id="programa"
+      formControlName="programa"
+      placeholder="programa"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="fechaEmision" class="form-label">fechaEmision</label>
+    <input
+      type="date"
+      class="form-control"
+      id="fechaEmision"
+      formControlName="fechaEmision"
+      placeholder="fechaEmision"
+    />
+  </div>
+  <!-- <div class="mb-3">
+    <label for="telefonoses" class="form-label">telefonoses</label>
+    <input
+      type="text"
+      class="form-control"
+      id="telefonoses"
+      formControlName="telefonoses"
+      placeholder="telefonoses"
+    />
+    <label for="telefonoses" class="form-label">telefonoses</label>
+  </div> -->
+  <div formArrayName="telefonoses">
+    @for(ctrl of phones.controls; track $index;let i = $index;){
+    <div class="flex items-center gap-2">
+      <input
+        type="tel"
+        class="form-control"
+        [formControlName]="i"
+        value="{{ ctrl.value }}"
+      />
+      @if(ctrl.invalid && ctrl.touched){
+      <span class="error"> Número no válido </span>
+      } @if(phones.length > 1){
+      <button type="button" (click)="removePhone(i)">🗑️</button>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Añadir -->
+  <button type="button" (click)="addPhone()">Añadir otro</button>
+  <div class="mb-3">
+    @for(joke of jokesRE.value();track $index;){
+    <label for="joke{{ $index }}" class="form-label">{{ joke.id }}</label>
+    <input
+      type="radio"
+      class="form-check-input"
+      id="joke{{ $index }}"
+      formControlName="jokes"
+      [value]="joke.id"
+    />
+    }
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

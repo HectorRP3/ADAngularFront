@@ -1,0 +1,40 @@
+<div class="card p-3 joke-card">
+  <div class="card-body">
+    <h5 class="card-title">Primera vez {{ primeraVez().id }}</h5>
+    <p class="card-text">
+      <strong>Programa:</strong> @if(primeraVez().programa !== "null"){
+      {{ primeraVez().programa }} }@else{ No tiene programa }
+    </p>
+    <p class="card-text">
+      <strong>Fecha de emisión:</strong> @if(primeraVez().fechaEmision !==
+      "null"){ {{ primeraVez().fechaEmision }} }@else{ No tiene fecha de emisión
+      }
+    </p>
+    <p class="card-text">
+      <strong>Teléfonos:</strong> @if(primeraVez().telefonoses.length){
+      {{ primeraVez().telefonoses }} }@else{ No tiene teléfonos }
+    </p>
+    <p class="card-text">
+      <strong>Jokes:</strong> @if(primeraVez().jokes){
+      {{ primeraVez().jokes }} }@else{ No tiene chistes }
+    </p>
+  </div>
+  <div class="row gap-2 flex justify-content-center">
+    <button
+      (click)="goEdit()"
+      type="button"
+      class="btn btn-info d-flex align-items-center gap-2 mt-4 col-3"
+    >
+      <fa-icon [icon]="icons.faEdit"></fa-icon>
+      Editar Joke
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger d-flex align-items-center gap-2 mt-4 col-3"
+      (click)="deletePrimeraVez(primeraVez().id!)"
+    >
+      <fa-icon [icon]="icons.faTrash"></fa-icon>
+      Delete Joke
+    </button>
+  </div>
+</div>

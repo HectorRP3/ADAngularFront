@@ -45,10 +45,11 @@ export class ServicesService {
       );
   }
   updatePrimeraVez(
-    primeraVez: PrimeraVezJokes
+    primeraVez: PrimeraVezJokes,
+    id: number
   ): Observable<PrimeraVezJokesUpdate> {
     return this.#http
-      .put<PrimeraVezJokesUpdate>(`${this.#primeraVezUrl}`, primeraVez)
+      .put<PrimeraVezJokesUpdate>(`${this.#primeraVezUrl}/${id}`, primeraVez)
       .pipe(
         map((r) => {
           console.log(r);

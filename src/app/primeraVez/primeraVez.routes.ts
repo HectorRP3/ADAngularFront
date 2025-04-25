@@ -18,13 +18,6 @@ export const primeraVezRoutes: Routes = [
       ),
   },
   {
-    path: ':id',
-    loadComponent: () =>
-      import('./primera-vez-detail/primera-vez-detail.component').then(
-        (c) => c.PrimeraVezDetailComponent
-      ),
-  },
-  {
     path: 'edit/:id',
     loadComponent: () =>
       import('./primera-vez-form/primera-vez-form.component').then(

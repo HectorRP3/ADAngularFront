@@ -18,13 +18,6 @@ export const jokesRoutes: Routes = [
       ),
   },
   {
-    path: ':id',
-    loadComponent: () =>
-      import('./jokes-detail/jokes-detail.component').then(
-        (c) => c.JokesDetailComponent
-      ),
-  },
-  {
     path: 'flags/:id',
     loadComponent: () =>
       import('./jokes-flags/jokes-flags.component').then(

@@ -104,8 +104,8 @@ export class PrimeraVezFormComponent {
         .updatePrimeraVez(newPrimeraVez, this.id()!)
         .pipe(takeUntilDestroyed(this.#destroyRef))
         .subscribe({
-          next: (res) => {
-            this.#router.navigate(['/primeravez', res.id]);
+          next: () => {
+            this.#router.navigate(['/primeravez']);
           },
           error: (err) => {
             this.alertModal(

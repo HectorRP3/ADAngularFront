@@ -21,9 +21,9 @@
   </div>
   <div class="mb-3">
     <h2>Selecciona categoria</h2>
-    @for(categories of categories; track $index){
+    @for(categories of categories.value(); track $index){
     <label for="category{{ $index }}" class="form-label">{{
-      categories.name
+      categories.category
     }}</label>
     <input
       type="radio"
@@ -36,8 +36,8 @@
   </div>
   <div class="mb-3">
     <h2>Selecciona tipo</h2>
-    @for(types of types; track $index){
-    <label for="">{{ types.name }}</label>
+    @for(types of types.value(); track $index){
+    <label for="">{{ types.type }}</label>
     <input
       type="radio"
       class="form-check-input"
@@ -49,8 +49,8 @@
   </div>
   <div class="mb-3">
     <h2>Selecciona idioma</h2>
-    @for(languages of languages; track $index){
-    <label for="">{{ languages.name }}</label>
+    @for(languages of languages.value(); track $index){
+    <label for="">{{ languages.language }}</label>
     <input
       type="radio"
       class="form-check-input"

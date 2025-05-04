@@ -1,0 +1,19 @@
+<div class="card p-3 joke-card">
+  <div class="card-body">
+    <h5 class="card-title">Type {{ type().id }}</h5>
+    <p class="card-text">
+      <strong>Type:</strong> @if(type().type){ {{ type().type }} }@else{ No
+      tiene type }
+    </p>
+  </div>
+  <div class="row gap-2 flex justify-content-center">
+    <button
+      (click)="goEdit()"
+      type="button"
+      class="btn btn-info d-flex align-items-center"
+    >
+      <fa-icon [icon]="icons.faEdit"></fa-icon>
+      Editar Type
+    </button>
+  </div>
+</div>

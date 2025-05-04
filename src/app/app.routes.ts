@@ -18,6 +18,24 @@ export const routes: Routes = [
       import('./primeraVez/primeraVez.routes').then((m) => m.primeraVezRoutes),
   },
   {
+    path: 'category',
+    title: 'Category | SPRING JOKES',
+    loadChildren: () =>
+      import('./category/category.routes').then((m) => m.categoryRoutes),
+  },
+  {
+    path: 'types',
+    title: 'Types | SPRING JOKES',
+    loadChildren: () =>
+      import('./types/types.routes').then((m) => m.typesRoutes),
+  },
+  {
+    path: 'languages',
+    title: 'Languages | SPRING JOKES',
+    loadChildren: () =>
+      import('./languages/languages.routes').then((m) => m.languagesRoutes),
+  },
+  {
     path: 'home',
     title: 'HOME | SPRING JOKES',
     loadComponent: () =>

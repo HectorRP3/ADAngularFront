@@ -1,0 +1,28 @@
+<form [formGroup]="language" class="mt-4" (submit)="addLanguage()">
+  <div class="mb-3">
+    <label for="code" class="form-label">code</label>
+    <input
+      type="text"
+      class="form-control"
+      id="code"
+      formControlName="code"
+      placeholder="code"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="language" class="form-label">Language</label>
+    <input
+      type="text"
+      class="form-control"
+      id="language"
+      formControlName="language"
+      placeholder="language"
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4"
+  >
+    @if(id()){ Editar Languages }@else{ Agregar Languages }
+  </button>
+</form>

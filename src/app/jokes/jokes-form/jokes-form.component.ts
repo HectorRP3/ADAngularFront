@@ -66,28 +66,6 @@ export class JokesFormComponent {
         })
       ),
   });
-
-  // languages = [
-  //   { id: 1, name: 'Czech' },
-  //   { id: 2, name: 'German' },
-  //   { id: 3, name: 'English' },
-  //   { id: 4, name: 'Spanish' },
-  //   { id: 5, name: 'French' },
-  //   { id: 6, name: 'Portuguese' },
-  // ];
-  // categories = [
-  //   { id: 1, name: 'Any' },
-  //   { id: 2, name: 'Misc' },
-  //   { id: 3, name: 'Programming' },
-  //   { id: 4, name: 'Dark' },
-  //   { id: 5, name: 'Pun' },
-  //   { id: 6, name: 'Spooky' },
-  //   { id: 7, name: 'Christmas' },
-  // ];
-  // types = [
-  //   { id: 1, name: 'single' },
-  //   { id: 2, name: 'twopart' },
-  // ];
   languages = rxResource({
     loader: () => this.#jokesService.getLanguages(),
   });

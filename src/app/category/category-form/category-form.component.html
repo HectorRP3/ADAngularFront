@@ -1,0 +1,18 @@
+<form [formGroup]="category" class="mt-4" (submit)="addCategory()">
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <input
+      type="text"
+      class="form-control"
+      id="category"
+      formControlName="category"
+      placeholder="category"
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4"
+  >
+    @if(id()){ Editar category }@else{ Agregar category }
+  </button>
+</form>

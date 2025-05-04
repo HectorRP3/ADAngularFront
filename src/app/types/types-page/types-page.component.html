@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between w-50">
+  <button
+    type="button"
+    class="btn btn-dark d-flex align-items-center gap-2 mt-4"
+    (click)="goCreateTypes()"
+  >
+    <fa-icon [icon]="icon.faPlus"></fa-icon>
+    Crear Types
+  </button>
+</div>
+
+<div
+  id="placesContainer"
+  class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"
+>
+  @if(types.isLoading()){
+  <div class="col text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  } @else { @for(type of types.value(); track $index){ @let number = $index + 1;
+  <types-card [type]="type" [number]="number"></types-card>
+  } }
+</div>

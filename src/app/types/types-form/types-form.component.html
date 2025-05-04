@@ -1,0 +1,18 @@
+<form [formGroup]="types" class="mt-4" (submit)="addTypes()">
+  <div class="mb-3">
+    <label for="category" class="form-label">Type</label>
+    <input
+      type="text"
+      class="form-control"
+      id="type"
+      formControlName="type"
+      placeholder="type"
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary d-flex align-items-center gap-2 mt-4"
+  >
+    @if(id()){ Editar type }@else{ Agregar type }
+  </button>
+</form>

@@ -1,17 +1,16 @@
 import { Component, effect, inject, input, signal } from '@angular/core';
-import { LanguagesService } from '../services/languages.service';
+import { rxResource } from '@angular/core/rxjs-interop';
 import {
   FormsModule,
   NonNullableFormBuilder,
-  PatternValidator,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Language, LanguageInsert } from '../interfaces/languages';
-import { rxResource } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
+import { Language, LanguageInsert } from '../interfaces/languages';
+import { LanguagesService } from '../services/languages.service';
 
 @Component({
   selector: 'languages-form',

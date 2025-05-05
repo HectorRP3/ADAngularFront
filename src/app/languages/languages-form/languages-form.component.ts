@@ -3,7 +3,9 @@ import { LanguagesService } from '../services/languages.service';
 import {
   FormsModule,
   NonNullableFormBuilder,
+  PatternValidator,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -25,7 +27,13 @@ export class LanguagesFormComponent {
   id = input<number>();
 
   language = this.#fb.group({
-    code: ['', { validators: [], nonNullable: true }],
+    code: [
+      '',
+      {
+        validators: [Validators.pattern(/^[A-z]{2}$/)],
+        nonNullable: true,
+      },
+    ],
     language: ['', { validators: [], nonNullable: true }],
   });
 

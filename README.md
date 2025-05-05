@@ -1,60 +1,46 @@
-# AngularJokes
+Guía rápida de instalación: Node.js + Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+Requisitos previos
 
-## Development server
+Sistema operativo con soporte (Windows, macOS o Linux).
 
-To start a local development server, run:
+Terminal / línea de comandos con privilegios de administrador.
 
-```bash
-ng serve
-```
+Conexión a internet.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Instalar Node.js
 
-## Code scaffolding
+1.1 Comprobar si ya lo tienes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+node -v
+npm -v
 
-```bash
-ng generate component component-name
-```
+Si ambos comandos responden con un número de versión, puedes saltar al paso 2.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1.2 Descarga e instalación
 
-```bash
-ng generate --help
-```
+Opción gráfica (todas las plataformas):
 
-## Building
+Ve a https://nodejs.org.
 
-To build the project run:
+1.3 Verifica la instalación
 
-```bash
-ng build
-```
+node -v
+npm -v
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+1. Actualizar npm (opcional)
 
-## Running unit tests
+npm install -g npm
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+3. Instalar Angular CLI
 
-```bash
-ng test
-```
+npm install -g @angular/cli
+1. Levantar el servidor de desarrollo
+npm i
+ng serve --open
 
-## Running end-to-end tests
+El comando abrirá tu navegador por defecto en http://localhost:4200/.
 
-For end-to-end (e2e) testing, run:
+1. Próximos pasos
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# ADAngularFront
+Documentación oficial de Angular: https://angular.dev
